@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+
+  myapi:
+    image: node-api-ts
+    container_name: node-api-ts
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - ENV=local
+        - PORT=8000
+    environment:
+      - ENV=production
+      - PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: ./api
+        target: /app
