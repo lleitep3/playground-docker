@@ -1,15 +1,25 @@
-Aula Docker
+Playground Docker
 ===
+# Objetivo
+Este é um roadmap para estudos de docker
 
-# Objetivo da aula
-Sair da aula com o conhecimento essencial de docker para o trabalho do dia-dia.
-
-# Agenda
-- [1 - Overview](#1---overview)
-- [2 - Docker cli](#2---docker-commandline)
-- [3 - Registry containers](#3---registry-containers)
-- [4 - Dockerfile](#4---dockerfile)
-- [5 - Docker Compose (orquestrador de ambientes)](#5---docker-compose-orquestrador-de-ambientes)
+# Roadmap
+ - Entendendo o Docker:
+  - Docker Engine;
+  - Arquitetura do Docker;
+  - Tecnologias que compõem o Docker;
+ - Docker Commandline:
+  - Baixando e utilizando uma imagem;
+  - Rodando uma imagem no modo interativo;
+  - Montando um volume;
+  - Expondo uma porta;
+ - Criando a sua imagem com `Dockerfile`:
+  - Build da sua uma imagem;
+  - Comandos : `FROM`, `RUN`, `ARG`,`ENV`, `ADD`, `WORKDIR` `CMD`, `ENTRYPOINT`;
+  - Docker Hub;
+ - Construindo com `docker-compose`:
+  - Construindo seu ambiente;
+  - Criando uma rede interna;
 
 --------------------------------------------------------
 ### Pré-requisitos:
@@ -19,25 +29,20 @@ Sair da aula com o conhecimento essencial de docker para o trabalho do dia-dia.
 
 -------------------------------------------------------
 ## 1 - Overview:
-  - Containers NÃO são VMs *OK*
-  - O que é um container? E como funciona? *OK*
-  - Plataforma do Docker *OK*
-  - Imagens e containers *OK*
-
-### Referências:
-  - [Containers x virtualização](https://www.docker.com/resources/what-container)
-  - [Overview](https://docs.docker.com/get-started/overview/)
-  - [Get Started](https://docs.docker.com/get-started/)
+  - [Containers NÃO são VMs;](https://www.docker.com/resources/what-container)
+  - [Docker Engine;](https://docs.docker.com/get-started/overview/#docker-engine)
+  - [Arquitetura do Docker;](https://docs.docker.com/get-started/overview/#docker-architecture)
+  - [Tecnologias que compõem o Docker;](https://docs.docker.com/get-started/overview/#the-underlying-technology)
 
 --------------------------------------------------------
 <!-- Docker_Commandline -->
 ## 2 - Docker Commandline:
-  - Comandos básicos do dia-dia
-    - docker ps
-    - docker run
-    - docker exec
+  - Baixando e utilizando uma imagem;
+  - Rodando uma imagem no modo interativo;
+  - Montando um volume;
+  - Expondo uma porta;
 
-### Cronograma
+### Baixando e utilizando uma imagem;
 
 **Verificando imagens locais**
 ```shell
@@ -63,33 +68,26 @@ $ docker run --name api-ts -it node:slim /bin/bash
 
 **Rodar uma imagem no modo interativo com auto-remove:**
 ```shell
-$ docker run --name api-ts --rm -it node:slim /bin/bash
+$ docker run --name my-api --rm -it node:slim /bin/bash
 ```
 
 **Criando uma imagem e montando um volume:**
 ```shell
-$ docker build -t image-api-ts -v ${PWD}/api /app .
+$ docker build -t image-api -v ${PWD}/api /app .
 ```
 
 #### Referências:
   - [Command-line](https://docs.docker.com/engine/reference/commandline/docker/)
 
 --------------------------------------------------------
-## 3 - Registry containers
-  - Docker Hub
-  - Docker Login
-
-#### Referências:
-  - [Docker Hub](https://hub.docker.com/_/node)
-
---------------------------------------------------------
 ## 4 - Dockerfile
-  - Comandos
-  - Como criar seu container
+  - Build da sua uma imagem;
+  - Comandos : `FROM`, `RUN`, `ARG`,`ENV`, `ADD`, `WORKDIR` `CMD`, `ENTRYPOINT`;
+  - Docker Hub;
 
 **Criando uma imagem:**
 ```shell
-$ docker build -t image-api-ts .
+$ docker build -t image-api .
 ```
 
 **Criando uma imagem e montando um volume:**
@@ -111,7 +109,7 @@ $ docker build -t node-ts . --build-arg ENV='local'
   - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 
 --------------------------------------------------------
-### Comandos utilizados na aula:
+### Comandos utilizados shell:
   - `touch` - *cria um arquivo vazio*
   - `mkdir` - *cria uma pasta*
   - `echo 'opa'` - *mostra uma string (como um console.log)*

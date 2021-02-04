@@ -1,6 +1,5 @@
 version: "3.4"
 services:
-
   myapi:
     image: node-api-ts
     container_name: node-api-ts
@@ -9,13 +8,37 @@ services:
       context: .
       args:
         - ENV=local
-        - PORT=8000
     environment:
-      - ENV=production
-      - PORT=8000
+      - ENV=local
     ports:
-      - "8000:8000"
+      - "8000:3000"
     volumes:
       - type: bind
-        source: ./api
+        source: ./app
         target: /app
+    networks:
+      - minharede
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'hackaton'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - type: bind
+        source: ./mysql-data
+        target: /var/lib/mysql
+    networks:
+      - minharede
+
+networks:
+  minharede:
+    external:
+      name: minharede
