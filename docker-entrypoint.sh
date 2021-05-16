@@ -1,12 +1,16 @@
-#!/bin/bash
+#! /bin/bash
 
-if [ "${ENV}" = 'production' ]; then
-  npm run build
-  npm run start
+if [ "$APP_ENV" = 'production' ]; then
+
+  if [ ! -d "/app/dist" ]; then
+    yarn build
+  fi
+
+  yarn start
 fi
 
-if [ "${ENV}" = 'local' ]; then
-  npm run dev
+if [ "$APP_ENV" = 'local' ]; then
+  yarn dev
 fi
 
 exec "$@"

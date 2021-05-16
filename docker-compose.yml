@@ -1,40 +1,22 @@
 version: "3.4"
+
 services:
-  myapi:
-    image: node-api-ts
-    container_name: node-api-ts
+  api_todo:
+    image: todo-api
+    container_name: todo-api
     build:
       dockerfile: Dockerfile
       context: .
       args:
-        - ENV=local
+        - APP_ENV=production
     environment:
-      - ENV=local
+      - APP_ENV=local
     ports:
-      - "8000:3000"
+      - "3010:3000"
     volumes:
       - type: bind
         source: ./app
         target: /app
-    networks:
-      - minharede
-
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'hackaton'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
-    volumes:
-      - type: bind
-        source: ./mysql-data
-        target: /var/lib/mysql
     networks:
       - minharede
 

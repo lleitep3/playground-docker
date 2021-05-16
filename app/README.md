@@ -26,7 +26,7 @@ Containarizar minha aplicação.
   - Conhecimentos básicos de bash command-line
   - Conhecimentos básicos de shell
 
---------------------------------------------------------
+-------------------------------------------------------
 ## 1 - Overview:
   - [Containers NÃO são VMs;](https://www.docker.com/resources/what-container)
   - [Docker Engine;](https://docs.docker.com/get-started/overview/#docker-engine)
