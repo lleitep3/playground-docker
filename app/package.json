@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
     "dev": "nodemon --watch 'src/' --exec './node_modules/.bin/ts-node src/app.ts' -e ts",
-    "test": "jest"
+    "test": "echo 'tests running'"
   },
   "author": "",
   "license": "ISC",

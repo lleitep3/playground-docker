@@ -1,0 +1,28 @@
+stages:
+  - build
+  - release
+
+BuildApi:
+  stage: build
+  script:
+    - cd app
+    - yarn
+    - yarn build
+  artifacts:
+    paths:
+      - app/node_modules
+    expire_in: 1 hour
+  only:
+    - merge_requests
+
+DeployHeroku:
+  image: lleitep3/node-heroku-cli
+  stage: deploy
+  script:
+    - cd app
+    - yarn build
+    - heroku git:remote -a sinform-todo-api
+    - git push heroku main
+  only:
+    refs:
+      - main
