@@ -9,7 +9,9 @@
     "dev": "npx nodemon --watch 'src/' --exec './node_modules/.bin/ts-node src/app.ts' -e ts",
     "test": "npx jest",
     "basta": "npx basta",
-    "test:coverage": "npx jest --coverage"
+    "test:coverage": "npx jest --coverage",
+    "lint": "prettier 'src/**/*.ts'",
+    "lint:fix": "prettier --write 'src/**/*.ts'"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
     "basta": "^1.0.3",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "prettier": "2.3.0",
     "supertest": "^6.1.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",

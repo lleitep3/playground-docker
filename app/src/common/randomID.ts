@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const randomID = () => uuidv4()
+const randomID = () => uuidv4();
 
-export default randomID
+export default randomID;
