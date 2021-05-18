@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
-    "dev": "nodemon --watch 'src/' --exec './node_modules/.bin/ts-node src/app.ts' -e ts",
+    "dev": "npx nodemon --watch 'src/' --exec './node_modules/.bin/ts-node src/app.ts' -e ts",
     "test": "echo 'tests running'"
   },
   "author": "",
