@@ -2,6 +2,7 @@ image: node:slim
 
 stages:
   - build
+  - validation
 
 BuildApi:
   stage: build
@@ -9,6 +10,12 @@ BuildApi:
     - cd app
     - yarn
     - yarn build
+
+UnitTests:
+  stage: validation
+  script:
+    - cd app
+    - yarn test:coverage
 
 # DeployHeroku:
 #   image: lleitep3/node-heroku-cli

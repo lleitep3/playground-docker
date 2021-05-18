@@ -1,17 +1,12 @@
-import { v4 as uuidv4 } from 'uuid';
+import randomID from '../common/randomID';
 import { Todo } from './model';
 import { TodoType } from "./type"
 
 let TODOS: Todo[] = [
-  new Todo({ id: uuidv4(), text: 'Primeira tarefa' }),
-  new Todo({ id: uuidv4(), text: 'Segunda tarefa' }),
-  new Todo({ id: uuidv4(), text: 'Terceira tarefa' })
+  new Todo({ id: randomID(), text: 'Primeira tarefa' }),
+  new Todo({ id: randomID(), text: 'Segunda tarefa' }),
+  new Todo({ id: randomID(), text: 'Terceira tarefa' })
 ]
-
-const generateId = () =>
-  Math.random()
-    .toString()
-    .split('.')[1]
 
 export class TodoService {
 
@@ -38,7 +33,7 @@ export class TodoService {
   }
 
   static create({ text }: TodoType) {
-    const newTodo = new Todo({ id: generateId(), text })
+    const newTodo = new Todo({ id: randomID(), text })
     TODOS.push(newTodo)
 
     return newTodo
