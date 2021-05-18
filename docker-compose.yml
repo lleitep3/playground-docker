@@ -2,15 +2,17 @@ version: "3.4"
 
 services:
   api_todo:
-    image: todo-api
-    container_name: todo-api
+    image: sinform-todo-api
+    container_name: sinform-todo-api
     build:
       dockerfile: Dockerfile
       context: .
       args:
         - APP_ENV=production
+        - PORT=3000
     environment:
-      - APP_ENV=local
+      - APP_ENV=production
+      - PORT=3000
     ports:
       - "3010:3000"
     volumes:
