@@ -33,6 +33,15 @@ CopyPasteDetector:
     - job: BuildApi
       artifacts: true
 
+Linter:
+  stage: validation
+  script:
+    - cd app
+    - yarn eslint
+  needs:
+    - job: BuildApi
+      artifacts: true
+
 # DeployHeroku:
 #   image: lleitep3/node-heroku-cli
 #   stage: deploy
