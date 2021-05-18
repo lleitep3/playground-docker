@@ -8,6 +8,7 @@
     "build": "tsc",
     "dev": "npx nodemon --watch 'src/' --exec './node_modules/.bin/ts-node src/app.ts' -e ts",
     "test": "npx jest",
+    "basta": "npx basta",
     "test:coverage": "npx jest --coverage"
   },
   "author": "",
@@ -22,6 +23,7 @@
     "@types/node": "^14.14.21",
     "@types/supertest": "^2.0.10",
     "@types/uuid": "^8.3.0",
+    "basta": "^1.0.3",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.1",

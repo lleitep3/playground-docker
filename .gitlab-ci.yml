@@ -24,6 +24,15 @@ UnitTests:
     - job: BuildApi
       artifacts: true
 
+CopyPasteDetector:
+  stage: validation
+  script:
+    - cd app
+    - yarn basta
+  needs:
+    - job: BuildApi
+      artifacts: true
+
 # DeployHeroku:
 #   image: lleitep3/node-heroku-cli
 #   stage: deploy
