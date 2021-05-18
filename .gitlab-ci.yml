@@ -20,8 +20,8 @@ UnitTests:
     - cd app
     - yarn test:coverage
   needs:
-    job: BuildApi
-    artifacts: true
+    - job: BuildApi
+      artifacts: true
 
 # DeployHeroku:
 #   image: lleitep3/node-heroku-cli
