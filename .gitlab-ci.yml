@@ -11,8 +11,9 @@ BuildApi:
     - yarn
     - yarn build
   artifacts:
-    - node_modules/
-    - dist/
+    paths:
+      - node_modules/
+      - dist/
 
 UnitTests:
   stage: validation
