@@ -14,15 +14,8 @@ services:
       - APP_ENV=production
       - PORT=3000
     ports:
-      - "80:3000"
+      - "3000:3000"
     volumes:
       - type: bind
         source: ./app
         target: /app
-    networks:
-      - minharede
-
-networks:
-  minharede:
-    external:
-      name: minharede

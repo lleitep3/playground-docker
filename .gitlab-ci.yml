@@ -1,6 +1,7 @@
+image: node:slim
+
 stages:
   - build
-  - release
 
 BuildApi:
   stage: build
@@ -8,27 +9,16 @@ BuildApi:
     - cd app
     - yarn
     - yarn build
-  artifacts:
-    paths:
-      - app/node_modules
-    expire_in: 1 hour
-  only:
-    - merge_requests
 
-DeployHeroku:
-  image: lleitep3/node-heroku-cli
-  stage: deploy
-  script:
-    - cd app
-    - yarn build
-    - git rm yarn.lock
-    - apt install ruby-dev curl -y
-    - gem install dpl
-    - git add --all
-    - git commit -m 'deploy'
-    - git branch -M main
-    - git push heroku main
-    - dpl --provider=heroku --app=sinform-todo-api --api_key=$HEROKU_API_KEY
-  only:
-    refs:
-      - main
+# DeployHeroku:
+#   image: lleitep3/node-heroku-cli
+#   stage: deploy
+#   script:
+#     - cd app
+#     - yarn build
+#     - echo $HEROKU_API_KEY | docker login -u _ registry.heroku.com --password-stdin
+#     - heroku container:push web
+#     -
+#   only:
+#     refs:
+#       - main
