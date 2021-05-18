@@ -3,6 +3,7 @@ image: node:slim
 stages:
   - build
   - validation
+  - release
 
 BuildApi:
   stage: build
@@ -42,15 +43,14 @@ Linter:
     - job: BuildApi
       artifacts: true
 
-# DeployHeroku:
-#   image: lleitep3/node-heroku-cli
-#   stage: deploy
-#   script:
-#     - cd app
-#     - yarn build
-#     - echo $HEROKU_API_KEY | docker login -u _ registry.heroku.com --password-stdin
-#     - heroku container:push web
-#     -
-#   only:
-#     refs:
-#       - main
+DeployHeroku:
+  stage: release
+  script:
+    - echo $HEROKU_API_KEY | docker login -u _ registry.heroku.com --password-stdin
+    - docker tag latest registry.heroku.com/$APP_NAME/$APP_PROCCESS
+    - docker push registry.heroku.com/$APP_NAME/$APP_PROCCESS
+  needs:
+    - job: BuildApi
+      artifacts: true
+  tags:
+    - docker
