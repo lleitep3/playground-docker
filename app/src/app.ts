@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/todos', todoRoutes);
 
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+const errorHandler: ErrorRequestHandler = (err, _, res) => {
   res.status(500).json({ message: err.message });
 };
 

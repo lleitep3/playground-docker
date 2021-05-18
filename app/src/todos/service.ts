@@ -9,7 +9,7 @@ let TODOS: Todo[] = [
 ];
 
 export class TodoService {
-  static setTodoList(todos: Todo[]) {
+  static setTodoList(todos: Todo[]): void {
     TODOS = todos;
   }
 
@@ -23,13 +23,13 @@ export class TodoService {
     return todo;
   }
 
-  static save(todo: TodoType) {
+  static save(todo: TodoType): Todo | undefined {
     const savedTodo = todo.id ? this.update(todo) : this.create(todo);
 
     return savedTodo;
   }
 
-  static create({ text }: TodoType) {
+  static create({ text }: TodoType): Todo {
     const newTodo = new Todo({ id: randomID(), text });
     TODOS.push(newTodo);
 
