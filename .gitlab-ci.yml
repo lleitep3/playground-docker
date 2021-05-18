@@ -1,4 +1,7 @@
-image: node:slim
+image: lleitep3/node-heroku-cli:docker
+
+services:
+  - docker:19.03.12-dind
 
 stages:
   - build
@@ -7,6 +10,7 @@ stages:
 
 BuildApi:
   stage: build
+
   script:
     - cd app
     - yarn
@@ -18,36 +22,41 @@ BuildApi:
 
 UnitTests:
   stage: validation
+
   script:
     - cd app
     - yarn test:coverage
+
   needs:
     - job: BuildApi
       artifacts: true
 
 CopyPasteDetector:
   stage: validation
+
   script:
     - cd app
     - yarn basta
+
   needs:
     - job: BuildApi
       artifacts: true
 
 Linter:
   stage: validation
+
   script:
     - cd app
     - yarn eslint
+
   needs:
     - job: BuildApi
       artifacts: true
 
 DeployHeroku:
   stage: release
+
   script:
     - echo $HEROKU_API_KEY | docker login -u _ registry.heroku.com --password-stdin
-    - docker tag latest registry.heroku.com/$APP_NAME/$APP_PROCCESS
-    - docker push registry.heroku.com/$APP_NAME/$APP_PROCCESS
-  tags:
-    - docker
+    - heroku container:push web
+    - heroku container:release web
