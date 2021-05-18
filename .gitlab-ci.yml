@@ -49,8 +49,5 @@ DeployHeroku:
     - echo $HEROKU_API_KEY | docker login -u _ registry.heroku.com --password-stdin
     - docker tag latest registry.heroku.com/$APP_NAME/$APP_PROCCESS
     - docker push registry.heroku.com/$APP_NAME/$APP_PROCCESS
-  needs:
-    - job: BuildApi
-      artifacts: true
   tags:
     - docker
