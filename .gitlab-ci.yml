@@ -10,14 +10,18 @@ BuildApi:
     - cd app
     - yarn
     - yarn build
+  artifacts:
+    - node_modules/
+    - dist/
 
 UnitTests:
   stage: validation
   script:
     - cd app
-    - yarn
-    - yarn build
     - yarn test:coverage
+  needs:
+    job: BuildApi
+    artifacts: true
 
 # DeployHeroku:
 #   image: lleitep3/node-heroku-cli
